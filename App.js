@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, View, FlatList, Button } from "react-native";
+import { StyleSheet, View, FlatList, Button, Text } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
 import GoalItem from "./components/GoalItem";
@@ -45,7 +45,7 @@ export default function App() {
           onAddGoal={addGoalHandler}
           onCancel={endAddGoalHandler}
         />
-        {goalsList.length > 0 && (
+        {goalsList.length > 0 ? (
           <View style={styles.cardContainer}>
             <View style={styles.goalsContainer}>
               <FlatList
@@ -58,6 +58,7 @@ export default function App() {
                       onDeleteItem={deleteGoalHandler}
                     />
                   );
+                  
                 }}
                 keyExtractor={(item, index) => {
                   return item.id;
@@ -66,8 +67,17 @@ export default function App() {
               />
             </View>
           </View>
+        ) : (
+          <View style={styles.cardContainerNoText}>
+            <Text style={styles.noGoalsText}>Start Adding Some Goals!</Text>
+          </View>
         )}
       </View>
+      <Button
+          title="Add New Goal"
+          color="#a065ec"
+          onPress={startAddGoalHandler}
+        />
     </>
   );
 }
@@ -91,5 +101,28 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     flex: 3,
     margin: 20,
+  },
+  cardContainerNoText: {
+    shadowColor: "black",
+    shadowOpacity: 0,
+    shadowOffset: { width: 0, height: 20 },
+    shadowRadius: 20,
+    elevation: 1,
+    borderRadius: 20,
+    backgroundColor: "white",
+    flex: 1,
+    margin: 20,
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  noGoalsText: {
+    fontSize: 35,
+    color: "black",
+    borderRadius: 20,
+    // backgroundColor: "#5e0acc",
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 20,
   },
 });
