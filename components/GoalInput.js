@@ -24,7 +24,7 @@ export default function GoalInput(props) {
     <>
       <Modal visible={props.visible} animationType="slide">
         <View style={styles.inputContainer}>
-          <Image style={styles.image} source={require('../assets/images/abstract.png')}/>
+          <Image style={styles.image} source={require('../assets/images/pencil.png')}/>
           <TextInput
             style={styles.textInput}
             placeholder="Enter Your Goal Here"
@@ -53,18 +53,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#e4d0ff",
     color: "120438",
     width: "100%",
-    padding: 8,
+    padding: 15,
   },
   inputContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    padding: 16,
+    padding: 25,
     borderBottomWidth: 1,
     backgroundColor: '#311b6b'
   },
   buttonContainer: {
-    marginTop: 16,
+    marginTop: 25,
     flexDirection: "row",
   },
   button: {
@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: 100,
-    height:"auto",
+    height:100,
+    marginBottom:20,
   }
 });

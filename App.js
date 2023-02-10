@@ -1,9 +1,18 @@
 import { useState } from "react";
-import { StyleSheet, View, FlatList, Button, Text } from "react-native";
+import {
+  StyleSheet,
+  View,
+  FlatList,
+  Button,
+  Text,
+  Image,
+  ImageBackground,
+} from "react-native";
 import { StatusBar } from "expo-status-bar";
 
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
+import { BackgroundImage } from "react-native-elements/dist/config";
 
 export default function App() {
   const [goalsList, setGoalsList] = useState([]);
@@ -35,11 +44,12 @@ export default function App() {
     <>
       <StatusBar style="light" />
       <View style={styles.appContainer}>
-        <Button
-          title="Add New Goal"
-          color="#a065ec"
-          onPress={startAddGoalHandler}
-        />
+        {/* <View style={styles.imageContainer}> */}
+          {/* <Image
+            style={styles.image}
+            source={require("./assets/images/stairs.png")}
+          /> */}
+        {/* </View> */}
         <GoalInput
           visible={modalIsVisible}
           onAddGoal={addGoalHandler}
@@ -58,7 +68,6 @@ export default function App() {
                       onDeleteItem={deleteGoalHandler}
                     />
                   );
-                  
                 }}
                 keyExtractor={(item, index) => {
                   return item.id;
@@ -70,14 +79,21 @@ export default function App() {
         ) : (
           <View style={styles.cardContainerNoText}>
             <Text style={styles.noGoalsText}>Start Adding Some Goals!</Text>
+            <Image
+              style={styles.image}
+              source={require("./assets/images/idea.png")}
+            />
           </View>
         )}
+        <View style={{ flex: 1 }}>
+          <Button
+            title="Add Goal"
+            color="#a065ec"
+            onPress={startAddGoalHandler}
+            borderRadius={20}
+          />
+        </View>
       </View>
-      <Button
-          title="Add New Goal"
-          color="#a065ec"
-          onPress={startAddGoalHandler}
-        />
     </>
   );
 }
@@ -87,6 +103,8 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     paddingHorizontal: 16,
+    flexDirection: "column",
+    justifyContent: "flex-end",
   },
   goalsContainer: {
     flex: 5,
@@ -120,9 +138,18 @@ const styles = StyleSheet.create({
     fontSize: 35,
     color: "black",
     borderRadius: 20,
-    // backgroundColor: "#5e0acc",
     flexDirection: "row",
     alignItems: "center",
     padding: 20,
+  },
+  imageContainer: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  image: {
+    width: 150,
+    height: 150,
+    marginBottom: 20,
   },
 });
