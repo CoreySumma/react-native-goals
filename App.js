@@ -12,7 +12,6 @@ import { StatusBar } from "expo-status-bar";
 
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
-import { BackgroundImage } from "react-native-elements/dist/config";
 
 export default function App() {
   const [goalsList, setGoalsList] = useState([]);
@@ -44,12 +43,15 @@ export default function App() {
     <>
       <StatusBar style="light" />
       <View style={styles.appContainer}>
-        {/* <View style={styles.imageContainer}> */}
-          {/* <Image
+        <View style={styles.imageContainer}>
+          <Image
             style={styles.image}
-            source={require("./assets/images/stairs.png")}
-          /> */}
-        {/* </View> */}
+            source={require("./assets/images/notebook.png")}
+          />
+        </View>
+        <View>
+          <Text style={styles.titleText} >Goal Keeper</Text>
+        </View>
         <GoalInput
           visible={modalIsVisible}
           onAddGoal={addGoalHandler}
@@ -78,7 +80,7 @@ export default function App() {
           </View>
         ) : (
           <View style={styles.cardContainerNoText}>
-            <Text style={styles.noGoalsText}>Start Adding Some Goals!</Text>
+            <Text style={styles.noGoalsText}>Let's set some goals</Text>
             <Image
               style={styles.image}
               source={require("./assets/images/idea.png")}
@@ -87,7 +89,7 @@ export default function App() {
         )}
         <View style={{ flex: 1 }}>
           <Button
-            title="Add Goal"
+            title="New Goal"
             color="#a065ec"
             onPress={startAddGoalHandler}
             borderRadius={20}
@@ -105,6 +107,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     flexDirection: "column",
     justifyContent: "flex-end",
+  },
+  titleText: {
+    fontSize: 35,
+    color: "white",
+    textAlign: 'center',
   },
   goalsContainer: {
     flex: 5,
@@ -135,7 +142,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   noGoalsText: {
-    fontSize: 35,
+    fontSize: 25,
     color: "black",
     borderRadius: 20,
     flexDirection: "row",
@@ -151,5 +158,13 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
     marginBottom: 20,
+  },
+  imageBorder: {
+    width: 150,
+    height: 150,
+    marginBottom: 20,
+    borderRadius: 75,
+    borderWidth: 2,
+    borderColor: "white",
   },
 });
